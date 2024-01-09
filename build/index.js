@@ -1,28 +1,59 @@
-/******/ (function() { // webpackBootstrap
+/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/attributes/sidebarSelect.js":
-/*!*****************************************!*\
-  !*** ./src/attributes/sidebarSelect.js ***!
-  \*****************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+/***/ "./src/blocks/blockList.js":
+/*!*********************************!*\
+  !*** ./src/blocks/blockList.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   enableSidebarSelectOnBlocks: () => (/* binding */ enableSidebarSelectOnBlocks)
+/* harmony export */ });
+// Enable custom attributes on Image block
+const enableSidebarSelectOnBlocks = ['core/paragraph', 'core/image', 'core/heading', 'core/gallery', 'core/list', 'core/quote', 'core/audio', 'core/cover', 'core/file', 'core/video', 'core/table', 'core/verse', 'core/code', 'core/freeform', 'core/html', 'core/preformatted', 'core/pullquote', 'core/button', 'core/columns', 'core/media-text', 'core/more', 'core/nextpage', 'core/separator', 'core/spacer', 'core/shortcode', 'core/archives', 'ore/categories', 'core/latest-comments', 'core/latest-posts', 'core/calendar', 'core/rss', 'core/search', 'core/tag-cloud', 'core/embed', 'core-embed/twitter', 'core-embed/youtube', 'core-embed/facebook', 'core-embed/instagram', 'core-embed/wordpress', 'core-embed/soundcloud', 'core-embed/spotify', 'core-embed/flickr', 'core-embed/vimeo', 'core-embed/animoto', 'core-embed/cloudup', 'core-embed/collegehumor', 'core-embed/dailymotion', 'core-embed/funnyordie', 'core-embed/hulu', 'core-embed/imgur', 'core-embed/issuu', 'core-embed/kickstarter', 'core-embed/meetup-com', 'core-embed/mixcloud', 'core-embed/photobucket', 'core-embed/polldaddy', 'core-embed/reddit', 'core-embed/reverbnation', 'core-embed/screencast', 'core-embed/scribd', 'core-embed/slideshare', 'core-embed/smugmug', 'core-embed/speaker', 'core-embed/ted', 'core-embed/tumblr', 'core-embed/videopress', 'core-embed/wordpress-tv', 'wp-bootstrap-blocks/container', 'wp-bootstrap-blocks/row', 'wp-bootstrap-blocks/column'];
+
+
+/***/ }),
+
+/***/ "./src/blocks/disableBlocks.js":
+/*!*************************************!*\
+  !*** ./src/blocks/disableBlocks.js ***!
+  \*************************************/
+/***/ (() => {
+
+wp.domReady(() => {
+  wp.blocks.unregisterBlockType('core/columns');
+  wp.blocks.unregisterBlockType('core/group');
+  wp.blocks.unregisterBlockType('core/column');
+});
+
+/***/ }),
+
+/***/ "./src/blocks/sidebarSettings.js":
+/*!***************************************!*\
+  !*** ./src/blocks/sidebarSettings.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _blockList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./blockList */ "./src/blocks/blockList.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 
 /* Add custom attribute to image block, in Sidebar */
 const {
   __
-} = wp.i18n; // Enable custom attributes on Image block
-
-const enableSidebarSelectOnBlocks = ['core/image'];
+} = wp.i18n;
 const {
   createHigherOrderComponent
 } = wp.compose;
@@ -30,93 +61,359 @@ const {
   Fragment
 } = wp.element;
 const {
-  InspectorControls
+  InspectorControls,
+  useBlockProps
 } = wp.blockEditor;
 const {
-  PanelBody,
-  SelectControl
+  CheckboxControl,
+  RadioControl,
+  TextControl,
+  ToggleControl,
+  SelectControl,
+  PanelBody
 } = wp.components;
+
 
 /**
  * Declare our custom attribute
  */
-
 const setSidebarSelectAttribute = (settings, name) => {
   // Do nothing if it's another block than our defined ones.
-  if (!enableSidebarSelectOnBlocks.includes(name)) {
+  if (!_blockList__WEBPACK_IMPORTED_MODULE_2__.enableSidebarSelectOnBlocks.includes(name)) {
     return settings;
   }
-
   return Object.assign({}, settings, {
     attributes: Object.assign({}, settings.attributes, {
-      imageAttribute: {
+      matchNavBackground: {
+        type: 'boolean'
+      },
+      fullWidth: {
+        type: 'boolean'
+      },
+      fullHeight: {
+        type: 'boolean'
+      },
+      hideMobile: {
+        type: 'boolean'
+      },
+      hideTablet: {
+        type: 'boolean'
+      },
+      hideDesktop: {
+        type: 'boolean'
+      },
+      blockAnimation: {
+        type: 'string'
+      },
+      topPadding: {
+        type: 'string'
+      },
+      bottomPadding: {
+        type: 'string'
+      },
+      topMargin: {
+        type: 'string'
+      },
+      bottomMargin: {
         type: 'string'
       }
     })
   });
 };
-
 wp.hooks.addFilter('blocks.registerBlockType', 'custom-attributes/set-sidebar-select-attribute', setSidebarSelectAttribute);
-/**
- * Add Custom Select to Image Sidebar
- */
-
 const withSidebarSelect = createHigherOrderComponent(BlockEdit => {
   return props => {
     // If current block is not allowed
-    if (!enableSidebarSelectOnBlocks.includes(props.name)) {
+    if (!_blockList__WEBPACK_IMPORTED_MODULE_2__.enableSidebarSelectOnBlocks.includes(props.name)) {
       return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockEdit, props);
     }
-
     const {
       attributes,
-      setAttributes
+      setAttributes,
+      isSelected
     } = props;
     const {
-      imageAttribute
+      matchNavBackground,
+      blockAnimation,
+      fullHeight,
+      fullWidth,
+      hideMobile,
+      hideTablet,
+      hideDesktop,
+      topPadding,
+      bottomPadding,
+      topMargin,
+      bottomMargin
     } = attributes;
+    const {
+      ToggleControl,
+      RadioControl,
+      CheckboxControl,
+      SelectControl
+    } = wp.components;
+    const {
+      InspectorAdvancedControls
+    } = wp.blockEditor;
+    function onChangeBlockAnimation(newValue) {
+      setAttributes({
+        blockAnimation: newValue
+      });
+    }
+    function onChangeTopPadding(newValue) {
+      setAttributes({
+        topPadding: newValue
+      });
+    }
+    function onChangeBottomPadding(newValue) {
+      setAttributes({
+        bottomPadding: newValue
+      });
+    }
+    function onChangeTopMargin(newValue) {
+      setAttributes({
+        topMargin: newValue
+      });
+    }
+    function onChangeBottomMargin(newValue) {
+      setAttributes({
+        bottomMargin: newValue
+      });
+    }
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockEdit, props), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(PanelBody, {
-      title: __('Image Custom Attributes')
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(SelectControl, {
-      label: __('Custom Attribute'),
-      value: imageAttribute,
+      title: __('Theme Main Base')
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(PanelBody, {
+      title: __('Block Settings')
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(ToggleControl, {
+      label: wp.i18n.__('Match Nav Background on scroll', 'emm-bootstrap-base'),
+      checked: !!attributes.matchNavBackground,
+      onChange: newval => setAttributes({
+        matchNavBackground: !attributes.matchNavBackground
+      })
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(ToggleControl, {
+      label: wp.i18n.__('Make Full Width', 'emm-bootstrap-base'),
+      help: "Make this block go edge to edge (good for Background colors)",
+      checked: !!attributes.fullWidth,
+      onChange: newval => setAttributes({
+        fullWidth: !attributes.fullWidth
+      })
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(ToggleControl, {
+      label: wp.i18n.__('Make Full Height', 'emm-bootstrap-base'),
+      help: "Make this block go edge to edge (good for Background colors)",
+      checked: !!attributes.fullHeight,
+      onChange: newval => setAttributes({
+        fullHeight: !attributes.fullHeight
+      })
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(SelectControl, {
+      label: "Animate this block",
+      value: blockAnimation,
       options: [{
-        label: __('None'),
+        label: 'No Animation',
         value: ''
       }, {
-        label: __('One'),
-        value: 'one'
+        label: 'Fade In',
+        value: 'fade-in'
+      }, {
+        label: 'Slide Up',
+        value: 'slide-up'
+      }, {
+        label: 'Bounce In',
+        value: 'bounce-in'
       }],
-      onChange: value => {
-        setAttributes({
-          imageAttribute: value
-        });
-      }
-    }))));
+      onChange: onChangeBlockAnimation
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(PanelBody, {
+      title: __('Spacing')
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(SelectControl, {
+      label: "Padding Top",
+      value: topPadding,
+      options: [{
+        label: 'None',
+        value: ''
+      }, {
+        label: 'Smallest',
+        value: 'pt-1'
+      }, {
+        label: 'Small',
+        value: 'pt-2'
+      }, {
+        label: 'Medium',
+        value: 'pt-3'
+      }, {
+        label: 'Large',
+        value: 'pt-4'
+      }, {
+        label: 'Largest',
+        value: 'pt-5'
+      }],
+      onChange: onChangeTopPadding
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(SelectControl, {
+      label: "Padding Bottom",
+      value: bottomPadding,
+      options: [{
+        label: 'None',
+        value: ''
+      }, {
+        label: 'Smallest',
+        value: 'pb-1'
+      }, {
+        label: 'Small',
+        value: 'pb-2'
+      }, {
+        label: 'Medium',
+        value: 'pb-3'
+      }, {
+        label: 'Large',
+        value: 'pb-4'
+      }, {
+        label: 'Largest',
+        value: 'pb-5'
+      }],
+      onChange: onChangeBottomPadding
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(SelectControl, {
+      label: "Margin Top",
+      value: topMargin,
+      options: [{
+        label: 'None',
+        value: ''
+      }, {
+        label: 'Smallest',
+        value: 'mt-1'
+      }, {
+        label: 'Small',
+        value: 'mt-2'
+      }, {
+        label: 'Medium',
+        value: 'mt-3'
+      }, {
+        label: 'Large',
+        value: 'mt-4'
+      }, {
+        label: 'Largest',
+        value: 'mt-5'
+      }],
+      onChange: onChangeTopMargin
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(SelectControl, {
+      label: "Margin Bottom",
+      value: bottomMargin,
+      options: [{
+        label: 'None',
+        value: ''
+      }, {
+        label: 'Smallest',
+        value: 'mb-1'
+      }, {
+        label: 'Small',
+        value: 'mb-2'
+      }, {
+        label: 'Medium',
+        value: 'mb-3'
+      }, {
+        label: 'Large',
+        value: 'mb-4'
+      }, {
+        label: 'Largest',
+        value: 'mb-5'
+      }],
+      onChange: onChangeBottomMargin
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(PanelBody, {
+      title: __('Visibility')
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(ToggleControl, {
+      label: wp.i18n.__('Hide on Mobile', 'emm-bootstrap-base'),
+      checked: !!attributes.hideMobile,
+      onChange: newval => setAttributes({
+        hideMobile: !attributes.hideMobile
+      })
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(ToggleControl, {
+      label: wp.i18n.__('Hide on Tablet', 'emm-bootstrap-base'),
+      checked: !!attributes.hideTablet,
+      onChange: newval => setAttributes({
+        hideTablet: !attributes.hideTablet
+      })
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(ToggleControl, {
+      label: wp.i18n.__('Hide on Desktop', 'emm-bootstrap-base'),
+      checked: !!attributes.hideDesktop,
+      onChange: newval => setAttributes({
+        hideDesktop: !attributes.hideDesktop
+      })
+    })))));
   };
 }, 'withSidebarSelect');
 wp.hooks.addFilter('editor.BlockEdit', 'custom-attributes/with-sidebar-select', withSidebarSelect);
+
 /**
  * Add custom class to block in Edit
  */
-
 const withSidebarSelectProp = createHigherOrderComponent(BlockListBlock => {
   return props => {
+    console.log({
+      props
+    });
+    let classes, addClasses;
     // If current block is not allowed
-    if (!enableSidebarSelectOnBlocks.includes(props.name)) {
+    if (!_blockList__WEBPACK_IMPORTED_MODULE_2__.enableSidebarSelectOnBlocks.includes(props.name)) {
       return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockListBlock, props);
     }
-
+    let foldBackgroundColor = props.attributes.backgroundColor;
+    if (foldBackgroundColor) {
+      foldBackgroundColor = foldBackgroundColor.toString();
+    }
     const {
       attributes
     } = props;
     const {
-      imageAttribute
+      matchNavBackground,
+      blockAnimation,
+      fullHeight,
+      fullWidth,
+      hideMobile,
+      hideTablet,
+      hideDesktop,
+      topPadding,
+      bottomPadding,
+      topMargin,
+      bottomMargin
     } = attributes;
-
-    if (imageAttribute) {
+    if (matchNavBackground) {
+      classes = classes + ' fold';
+      addClasses = 1;
+      if (foldBackgroundColor) {
+        classes = classes + ' fold_' + foldBackgroundColor;
+      }
+    }
+    if (blockAnimation) {
+      classes = classes + '  animation-on ' + blockAnimation;
+      addClasses = 1;
+    }
+    if (fullHeight) {
+      classes = classes + ' full-height';
+    }
+    if (fullWidth) {
+      classes = classes + ' full-width';
+    }
+    if (hideMobile) {
+      classes = classes + ' d-none';
+    }
+    if (hideTablet) {
+      classes = classes + ' d-inherit d-md-none d-xl-inherit';
+    }
+    if (hideDesktop) {
+      classes = classes + ' d-xl-none';
+    }
+    if (topPadding) {
+      classes = classes + ' ' + topPadding;
+    }
+    if (bottomPadding) {
+      classes = classes + ' ' + bottomPadding;
+    }
+    if (topMargin) {
+      classes = classes + ' ' + topMargin;
+    }
+    if (bottomMargin) {
+      classes = classes + ' ' + bottomMargin;
+    }
+    if (addClasses) {
       return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockListBlock, (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
-        className: 'has-option-' + imageAttribute
+        className: classes,
+        "data-class": foldBackgroundColor
       }));
     } else {
       return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockListBlock, props);
@@ -124,172 +421,98 @@ const withSidebarSelectProp = createHigherOrderComponent(BlockListBlock => {
   };
 }, 'withSidebarSelectProp');
 wp.hooks.addFilter('editor.BlockListBlock', 'custom-attributes/with-sidebar-select-prop', withSidebarSelectProp);
+
 /**
  * Save our custom attribute
  */
-
 const saveSidebarSelectAttribute = (extraProps, blockType, attributes) => {
   // Do nothing if it's another block than our defined ones.
-  if (enableSidebarSelectOnBlocks.includes(blockType.name)) {
-    const {
-      imageAttribute
-    } = attributes;
 
-    if (imageAttribute) {
-      extraProps.className = classnames__WEBPACK_IMPORTED_MODULE_2___default()(extraProps.className, 'has-option-' + imageAttribute);
+  if (_blockList__WEBPACK_IMPORTED_MODULE_2__.enableSidebarSelectOnBlocks.includes(blockType.name)) {
+    let foldBackgroundColor = attributes.backgroundColor;
+    //foldBackgroundColor = foldBackgroundColor.toString();
+
+    let classes, addClasses;
+    const {
+      matchNavBackground,
+      blockAnimation,
+      fullHeight,
+      fullWidth,
+      hideMobile,
+      hideTablet,
+      hideDesktop,
+      topPadding,
+      bottomPadding,
+      topMargin,
+      bottomMargin
+    } = attributes;
+    const {
+      content,
+      checkboxField,
+      radioField,
+      textField,
+      toggleField,
+      selectField
+    } = attributes;
+    //const blockProps = useBlockProps.save();
+
+    if (matchNavBackground) {
+      classes = classes + ' fold';
+      addClasses = 1;
+      if (foldBackgroundColor) {
+        classes = classes + ' fold_' + foldBackgroundColor;
+      }
+    }
+    if (blockAnimation) {
+      classes = classes + '  animation-on ' + blockAnimation;
+      addClasses = 1;
+    }
+    if (fullHeight) {
+      classes = classes + ' full-height';
+    }
+    if (fullWidth) {
+      classes = classes + ' full-width';
+    }
+    if (hideMobile) {
+      classes = classes + ' d-none';
+    }
+    if (hideTablet) {
+      classes = classes + ' d-inherit d-md-none d-xl-inherit';
+    }
+    if (hideDesktop) {
+      classes = classes + ' d-xl-none';
+    }
+    if (topPadding) {
+      classes = classes + ' ' + topPadding;
+    }
+    if (bottomPadding) {
+      classes = classes + ' ' + bottomPadding;
+    }
+    if (topMargin) {
+      classes = classes + ' ' + topMargin;
+    }
+    if (bottomMargin) {
+      classes = classes + ' ' + bottomMargin;
+    }
+    if (addClasses) {
+      extraProps.className = classnames__WEBPACK_IMPORTED_MODULE_3___default()(extraProps.className, classes);
+      //console.log(attributes);
     }
   }
-
   return extraProps;
 };
-
 wp.hooks.addFilter('blocks.getSaveContent.extraProps', 'custom-attributes/save-sidebar-select-attribute', saveSidebarSelectAttribute);
 
 /***/ }),
 
-/***/ "./src/attributes/toolbarButton.js":
-/*!*****************************************!*\
-  !*** ./src/attributes/toolbarButton.js ***!
-  \*****************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+/***/ "@wordpress/element":
+/*!*********************************!*\
+  !*** external ["wp","element"] ***!
+  \*********************************/
+/***/ ((module) => {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
-
-
-
-/* Add custom attribute to paragraph block, in Toolbar */
-const {
-  __
-} = wp.i18n; // Enable custom attributes on Paragraph block
-
-const enableToolbarButtonOnBlocks = ['core/paragraph'];
-const {
-  createHigherOrderComponent
-} = wp.compose;
-const {
-  Fragment
-} = wp.element;
-const {
-  BlockControls
-} = wp.blockEditor;
-const {
-  ToolbarGroup,
-  ToolbarButton
-} = wp.components;
-
-/**
- * Declare our custom attribute
- */
-
-const setToolbarButtonAttribute = (settings, name) => {
-  // Do nothing if it's another block than our defined ones.
-  if (!enableToolbarButtonOnBlocks.includes(name)) {
-    return settings;
-  }
-
-  return Object.assign({}, settings, {
-    attributes: Object.assign({}, settings.attributes, {
-      paragraphAttribute: {
-        type: 'string'
-      }
-    })
-  });
-};
-
-wp.hooks.addFilter('blocks.registerBlockType', 'custom-attributes/set-toolbar-button-attribute', setToolbarButtonAttribute);
-/**
- * Add Custom Button to Paragraph Toolbar
- */
-
-const withToolbarButton = createHigherOrderComponent(BlockEdit => {
-  return props => {
-    // If current block is not allowed
-    if (!enableToolbarButtonOnBlocks.includes(props.name)) {
-      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockEdit, props);
-    }
-
-    const {
-      attributes,
-      setAttributes
-    } = props;
-    const {
-      paragraphAttribute
-    } = attributes;
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockControls, {
-      group: "block"
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(ToolbarGroup, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(ToolbarButton, {
-      icon: "format-status",
-      label: __('Custom Button', 'core-block-custom-attributes'),
-      isActive: paragraphAttribute === 'custom',
-      onClick: () => {
-        if (paragraphAttribute === 'custom') {
-          setAttributes({
-            paragraphAttribute: false
-          });
-        } else {
-          setAttributes({
-            paragraphAttribute: 'custom'
-          });
-        }
-      }
-    }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockEdit, props));
-  };
-}, 'withToolbarButton');
-wp.hooks.addFilter('editor.BlockEdit', 'custom-attributes/with-toolbar-button', withToolbarButton);
-/**
- * Add custom class to block in Edit
- */
-
-const withToolbarButtonProp = createHigherOrderComponent(BlockListBlock => {
-  return props => {
-    // If current block is not allowed
-    if (!enableToolbarButtonOnBlocks.includes(props.name)) {
-      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockListBlock, props);
-    }
-
-    const {
-      attributes
-    } = props;
-    const {
-      paragraphAttribute
-    } = attributes;
-
-    if (paragraphAttribute && 'custom' === paragraphAttribute) {
-      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockListBlock, (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
-        className: 'has-custom-attribute'
-      }));
-    } else {
-      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockListBlock, props);
-    }
-  };
-}, 'withToolbarButtonProp');
-wp.hooks.addFilter('editor.BlockListBlock', 'custom-attributes/with-toolbar-button-prop', withToolbarButtonProp);
-/**
- * Save our custom attribute
- */
-
-const saveToolbarButtonAttribute = (extraProps, blockType, attributes) => {
-  // Do nothing if it's another block than our defined ones.
-  if (enableToolbarButtonOnBlocks.includes(blockType.name)) {
-    const {
-      paragraphAttribute
-    } = attributes;
-
-    if (paragraphAttribute && 'custom' === paragraphAttribute) {
-      extraProps.className = classnames__WEBPACK_IMPORTED_MODULE_2___default()(extraProps.className, 'has-custom-attribute');
-    }
-  }
-
-  return extraProps;
-};
-
-wp.hooks.addFilter('blocks.getSaveContent.extraProps', 'custom-attributes/save-toolbar-button-attribute', saveToolbarButtonAttribute);
+module.exports = window["wp"]["element"];
 
 /***/ }),
 
@@ -297,12 +520,12 @@ wp.hooks.addFilter('blocks.getSaveContent.extraProps', 'custom-attributes/save-t
 /*!******************************************!*\
   !*** ./node_modules/classnames/index.js ***!
   \******************************************/
-/***/ (function(module, exports) {
+/***/ ((module, exports) => {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-  Copyright (c) 2018 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
+	Copyright (c) 2018 Jed Watson.
+	Licensed under the MIT License (MIT), see
+	http://jedwatson.github.io/classnames
 */
 /* global define */
 
@@ -311,38 +534,57 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 	var hasOwn = {}.hasOwnProperty;
 
-	function classNames() {
-		var classes = [];
+	function classNames () {
+		var classes = '';
 
 		for (var i = 0; i < arguments.length; i++) {
 			var arg = arguments[i];
-			if (!arg) continue;
-
-			var argType = typeof arg;
-
-			if (argType === 'string' || argType === 'number') {
-				classes.push(arg);
-			} else if (Array.isArray(arg)) {
-				if (arg.length) {
-					var inner = classNames.apply(null, arg);
-					if (inner) {
-						classes.push(inner);
-					}
-				}
-			} else if (argType === 'object') {
-				if (arg.toString === Object.prototype.toString) {
-					for (var key in arg) {
-						if (hasOwn.call(arg, key) && arg[key]) {
-							classes.push(key);
-						}
-					}
-				} else {
-					classes.push(arg.toString());
-				}
+			if (arg) {
+				classes = appendClass(classes, parseValue(arg));
 			}
 		}
 
-		return classes.join(' ');
+		return classes;
+	}
+
+	function parseValue (arg) {
+		if (typeof arg === 'string' || typeof arg === 'number') {
+			return arg;
+		}
+
+		if (typeof arg !== 'object') {
+			return '';
+		}
+
+		if (Array.isArray(arg)) {
+			return classNames.apply(null, arg);
+		}
+
+		if (arg.toString !== Object.prototype.toString && !arg.toString.toString().includes('[native code]')) {
+			return arg.toString();
+		}
+
+		var classes = '';
+
+		for (var key in arg) {
+			if (hasOwn.call(arg, key) && arg[key]) {
+				classes = appendClass(classes, key);
+			}
+		}
+
+		return classes;
+	}
+
+	function appendClass (value, newClass) {
+		if (!newClass) {
+			return value;
+		}
+	
+		if (value) {
+			return value + ' ' + newClass;
+		}
+	
+		return value + newClass;
 	}
 
 	if ( true && module.exports) {
@@ -360,43 +602,29 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 /***/ }),
 
-/***/ "@wordpress/element":
-/*!*********************************!*\
-  !*** external ["wp","element"] ***!
-  \*********************************/
-/***/ (function(module) {
-
-"use strict";
-module.exports = window["wp"]["element"];
-
-/***/ }),
-
 /***/ "./node_modules/@babel/runtime/helpers/esm/extends.js":
 /*!************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/esm/extends.js ***!
   \************************************************************/
-/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": function() { return /* binding */ _extends; }
+/* harmony export */   "default": () => (/* binding */ _extends)
 /* harmony export */ });
 function _extends() {
-  _extends = Object.assign || function (target) {
+  _extends = Object.assign ? Object.assign.bind() : function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
-
       for (var key in source) {
         if (Object.prototype.hasOwnProperty.call(source, key)) {
           target[key] = source[key];
         }
       }
     }
-
     return target;
   };
-
   return _extends.apply(this, arguments);
 }
 
@@ -430,59 +658,61 @@ function _extends() {
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
-/******/ 	!function() {
+/******/ 	(() => {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = function(module) {
+/******/ 		__webpack_require__.n = (module) => {
 /******/ 			var getter = module && module.__esModule ?
-/******/ 				function() { return module['default']; } :
-/******/ 				function() { return module; };
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
 /******/ 			__webpack_require__.d(getter, { a: getter });
 /******/ 			return getter;
 /******/ 		};
-/******/ 	}();
+/******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
-/******/ 	!function() {
+/******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = function(exports, definition) {
+/******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
 /******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
-/******/ 	}();
+/******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	!function() {
-/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
-/******/ 	}();
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
-/******/ 	!function() {
+/******/ 	(() => {
 /******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = function(exports) {
+/******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
-/******/ 	}();
+/******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
-!function() {
+(() => {
 "use strict";
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _attributes_toolbarButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./attributes/toolbarButton */ "./src/attributes/toolbarButton.js");
-/* harmony import */ var _attributes_sidebarSelect__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./attributes/sidebarSelect */ "./src/attributes/sidebarSelect.js");
+/* harmony import */ var _blocks_disableBlocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./blocks/disableBlocks */ "./src/blocks/disableBlocks.js");
+/* harmony import */ var _blocks_disableBlocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_blocks_disableBlocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _blocks_sidebarSettings__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./blocks/sidebarSettings */ "./src/blocks/sidebarSettings.js");
 
 
-}();
+})();
+
 /******/ })()
 ;
 //# sourceMappingURL=index.js.map

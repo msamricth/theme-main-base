@@ -1,14 +1,16 @@
 <?php
 /**
- * Plugin Name:       Core Block Custom Attributes
- * Description:       Example to add custom attributes to core blocks (Toolbar and Sidebar)
+ * Plugin Name:       Theme Main Base Functions
+ * Description:       Adds custom functionality to the Theme Maim wordpress theme.
+ * Plugin URI:        https://github.com/msamricth/theme-main-base
  * Requires at least: 5.8
  * Requires PHP:      7.0
  * Version:           0.1.0
- * Author:            Marie Comet
+ * Author:            Emm Talarico
+ * Author URI:        https://github.com/msamricth
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       core-block-custom-attributes
+ * Text Domain:       theme-main-base
  *
  * @package           create-block
  */
@@ -22,13 +24,13 @@ if ( ! defined( 'CUSTOM_ATTRIBUTES_URL' ) ) {
     define( 'CUSTOM_ATTRIBUTES_URL', plugin_dir_url( __FILE__ ) );
 }
 
-function custom_attributes_editor_scripts() {
+function theme_main_editor_scripts() {
     wp_register_script(
         'custom-attributes',
         CUSTOM_ATTRIBUTES_URL . 'build/index.js',
-        [ 'wp-blocks', 'wp-dom', 'wp-dom-ready', 'wp-edit-post' ],
+        [ 'wp-blocks', 'wp-dom', 'wp-dom-ready', 'wp-edit-post', 'acf' ],
         filemtime( CUSTOM_ATTRIBUTES_PATH . 'build/index.js' )
     );
     wp_enqueue_script( 'custom-attributes' );
 }
-add_action( 'enqueue_block_editor_assets', 'custom_attributes_editor_scripts' );
+add_action( 'enqueue_block_editor_assets', 'theme_main_editor_scripts' );

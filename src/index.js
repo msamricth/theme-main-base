@@ -1,2 +1,2 @@
-import './attributes/toolbarButton';
-import './attributes/sidebarSelect'; 
+import './blocks/disableBlocks'; 
+import './blocks/sidebarSettings'; 
