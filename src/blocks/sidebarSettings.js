@@ -9,11 +9,11 @@ const { createHigherOrderComponent } = wp.compose;
 const { Fragment } = wp.element;
 const { InspectorControls, useBlockProps } = wp.blockEditor;
 const { CheckboxControl,
-	RadioControl,
-	TextControl,
-	ToggleControl,
-	SelectControl,
-	PanelBody } = wp.components;
+    RadioControl,
+    TextControl,
+    ToggleControl,
+    SelectControl,
+    PanelBody } = wp.components;
 
 import classnames from 'classnames'
 
@@ -146,66 +146,66 @@ const withSidebarSelect = createHigherOrderComponent((BlockEdit) => {
                                     { label: 'Largest', value: 'pt-5' },
                                 ]}
                                 onChange={onChangeTopPadding}
-                            />                      
-                        <SelectControl
-                            label="Padding Bottom"
-                            value={bottomPadding}
-                            options={[
-                                { label: 'None', value: '' },
-                                { label: 'Smallest', value: 'pb-1' },
-                                { label: 'Small', value: 'pb-2' },
-                                { label: 'Medium', value: 'pb-3' },
-                                { label: 'Large', value: 'pb-4' },
-                                { label: 'Largest', value: 'pb-5' },
-                            ]}
-                            onChange={onChangeBottomPadding}
-                        />
-                    <SelectControl
-                        label="Margin Top"
-                        value={topMargin}
-                        options={[
-                            { label: 'None', value: '' },
-                            { label: 'Smallest', value: 'mt-1' },
-                            { label: 'Small', value: 'mt-2' },
-                            { label: 'Medium', value: 'mt-3' },
-                            { label: 'Large', value: 'mt-4' },
-                            { label: 'Largest', value: 'mt-5' },
-                        ]}
-                        onChange={onChangeTopMargin}
-                    />
-                    <SelectControl
-                        label="Margin Bottom"
-                        value={bottomMargin}
-                        options={[
-                            { label: 'None', value: '' },
-                            { label: 'Smallest', value: 'mb-1' },
-                            { label: 'Small', value: 'mb-2' },
-                            { label: 'Medium', value: 'mb-3' },
-                            { label: 'Large', value: 'mb-4' },
-                            { label: 'Largest', value: 'mb-5' },
-                        ]}
-                        onChange={onChangeBottomMargin}
-                    />
-                </PanelBody>
-                <PanelBody title={__('Visibility')}>
-                    <ToggleControl
-                        label={wp.i18n.__('Hide on Mobile', 'emm-bootstrap-base')}
-                        checked={!!attributes.hideMobile}
-                        onChange={(newval) => setAttributes({ hideMobile: !attributes.hideMobile })}
-                    />
-                    <ToggleControl
-                        label={wp.i18n.__('Hide on Tablet', 'emm-bootstrap-base')}
-                        checked={!!attributes.hideTablet}
-                        onChange={(newval) => setAttributes({ hideTablet: !attributes.hideTablet })}
-                    />
-                    <ToggleControl
-                        label={wp.i18n.__('Hide on Desktop', 'emm-bootstrap-base')}
-                        checked={!!attributes.hideDesktop}
-                        onChange={(newval) => setAttributes({ hideDesktop: !attributes.hideDesktop })}
-                    />
-                </PanelBody>
+                            />
+                            <SelectControl
+                                label="Padding Bottom"
+                                value={bottomPadding}
+                                options={[
+                                    { label: 'None', value: '' },
+                                    { label: 'Smallest', value: 'pb-1' },
+                                    { label: 'Small', value: 'pb-2' },
+                                    { label: 'Medium', value: 'pb-3' },
+                                    { label: 'Large', value: 'pb-4' },
+                                    { label: 'Largest', value: 'pb-5' },
+                                ]}
+                                onChange={onChangeBottomPadding}
+                            />
+                            <SelectControl
+                                label="Margin Top"
+                                value={topMargin}
+                                options={[
+                                    { label: 'None', value: '' },
+                                    { label: 'Smallest', value: 'mt-1' },
+                                    { label: 'Small', value: 'mt-2' },
+                                    { label: 'Medium', value: 'mt-3' },
+                                    { label: 'Large', value: 'mt-4' },
+                                    { label: 'Largest', value: 'mt-5' },
+                                ]}
+                                onChange={onChangeTopMargin}
+                            />
+                            <SelectControl
+                                label="Margin Bottom"
+                                value={bottomMargin}
+                                options={[
+                                    { label: 'None', value: '' },
+                                    { label: 'Smallest', value: 'mb-1' },
+                                    { label: 'Small', value: 'mb-2' },
+                                    { label: 'Medium', value: 'mb-3' },
+                                    { label: 'Large', value: 'mb-4' },
+                                    { label: 'Largest', value: 'mb-5' },
+                                ]}
+                                onChange={onChangeBottomMargin}
+                            />
+                        </PanelBody>
+                        <PanelBody title={__('Visibility')}>
+                            <ToggleControl
+                                label={wp.i18n.__('Hide on Mobile', 'emm-bootstrap-base')}
+                                checked={!!attributes.hideMobile}
+                                onChange={(newval) => setAttributes({ hideMobile: !attributes.hideMobile })}
+                            />
+                            <ToggleControl
+                                label={wp.i18n.__('Hide on Tablet', 'emm-bootstrap-base')}
+                                checked={!!attributes.hideTablet}
+                                onChange={(newval) => setAttributes({ hideTablet: !attributes.hideTablet })}
+                            />
+                            <ToggleControl
+                                label={wp.i18n.__('Hide on Desktop', 'emm-bootstrap-base')}
+                                checked={!!attributes.hideDesktop}
+                                onChange={(newval) => setAttributes({ hideDesktop: !attributes.hideDesktop })}
+                            />
+                        </PanelBody>
 
-            </PanelBody>
+                    </PanelBody>
                 </InspectorControls >
             </Fragment >
         );
@@ -224,10 +224,9 @@ wp.hooks.addFilter(
  */
 const withSidebarSelectProp = createHigherOrderComponent((BlockListBlock) => {
     return (props) => {
-
-        console.log({ props });
         let classes,
-            addClasses;
+            addClasses,
+        turnOnFold;
         // If current block is not allowed
         if (!enableSidebarSelectOnBlocks.includes(props.name)) {
             return (
@@ -235,30 +234,40 @@ const withSidebarSelectProp = createHigherOrderComponent((BlockListBlock) => {
             );
         }
         let foldBackgroundColor = props.attributes.backgroundColor;
+        let foldColor = props.attributes.color;
+        if (foldColor) { foldColor = foldColor.toString(); }
         if (foldBackgroundColor) { foldBackgroundColor = foldBackgroundColor.toString(); }
         const { attributes } = props;
         const { matchNavBackground, blockAnimation, fullHeight, fullWidth, hideMobile, hideTablet, hideDesktop, topPadding, bottomPadding, topMargin, bottomMargin } = attributes;
         if (matchNavBackground) {
-            classes = classes + ' fold';
+            turnOnFold = 1;
             addClasses = 1;
+            if (foldColor) {
+                classes = classes + ' colorMatch_' + foldColor;
+            }
             if (foldBackgroundColor) {
-                classes = classes + ' fold_' + foldBackgroundColor;
+                classes = classes + ' match-nav match_' + foldBackgroundColor;
             }
         }
         if (blockAnimation) {
+            turnOnFold = 1;
             classes = classes + '  animation-on ' + blockAnimation;
             addClasses = 1;
         }
-        if (fullHeight) { classes = classes + ' full-height'; }
-        if (fullWidth) { classes = classes + ' full-width'; }
-        if (hideMobile) { classes = classes + ' d-none'; }
-        if (hideTablet) { classes = classes + ' d-inherit d-md-none d-xl-inherit'; }
-        if (hideDesktop) { classes = classes + ' d-xl-none'; }
-        
-        if(topPadding) {classes = classes + ' ' + topPadding;}
-        if(bottomPadding) {classes = classes + ' ' + bottomPadding;}
-        if(topMargin) {classes = classes + ' ' + topMargin;}
-        if(bottomMargin) {classes = classes + ' ' + bottomMargin;}
+        if (turnOnFold) {
+            classes = classes + ' fold';
+            addClasses = 1;
+        }
+        if (fullHeight) { classes = classes + ' full-height';  addClasses = 1;}
+        if (fullWidth) { classes = classes + ' full-width';  addClasses = 1;}
+        if (hideMobile) { classes = classes + ' d-none';  addClasses = 1;}
+        if (hideTablet) { classes = classes + ' d-inherit d-md-none d-xl-inherit';  addClasses = 1;}
+        if (hideDesktop) { classes = classes + ' d-xl-none';  addClasses = 1;}
+
+        if (topPadding) { classes = classes + ' ' + topPadding;  addClasses = 1;}
+        if (bottomPadding) { classes = classes + ' ' + bottomPadding;  addClasses = 1;}
+        if (topMargin) { classes = classes + ' ' + topMargin;  addClasses = 1;}
+        if (bottomMargin) { classes = classes + ' ' + bottomMargin;  addClasses = 1;}
         if (addClasses) {
             return <BlockListBlock {...props} className={classes} data-class={foldBackgroundColor} />
         } else {
@@ -281,47 +290,82 @@ const saveSidebarSelectAttribute = (extraProps, blockType, attributes) => {
     // Do nothing if it's another block than our defined ones.
 
     if (enableSidebarSelectOnBlocks.includes(blockType.name)) {
-        
+
         let foldBackgroundColor = attributes.backgroundColor;
         //foldBackgroundColor = foldBackgroundColor.toString();
 
+        let foldColor = attributes.color;
         let classes,
-            addClasses;
+            addClasses,
+            turnOnFold;
         const { matchNavBackground, blockAnimation, fullHeight, fullWidth, hideMobile, hideTablet, hideDesktop, topPadding, bottomPadding, topMargin, bottomMargin } = attributes;
 
 
-		const {
-			content,
-			checkboxField,
-			radioField,
-			textField,
-			toggleField,
-			selectField,
-		} = attributes;
-		//const blockProps = useBlockProps.save();
-
+        const {
+            content,
+            checkboxField,
+            radioField,
+            textField,
+            toggleField,
+            selectField,
+        } = attributes;
+        
 
         if (matchNavBackground) {
-            classes = classes + ' fold';
+            turnOnFold = 1;
             addClasses = 1;
+            
+            if (foldColor) {
+                classes = classes + ' colorMatch_' + foldColor;
+            }
             if (foldBackgroundColor) {
-                classes = classes + ' fold_' + foldBackgroundColor;
+                classes = classes + '  match-nav match_' + foldBackgroundColor;
             }
         }
         if (blockAnimation) {
+            turnOnFold = 1;
             classes = classes + '  animation-on ' + blockAnimation;
             addClasses = 1;
         }
-        if (fullHeight) { classes = classes + ' full-height'; }
-        if (fullWidth) { classes = classes + ' full-width'; }
-        if (hideMobile) { classes = classes + ' d-none'; }
-        if (hideTablet) { classes = classes + ' d-inherit d-md-none d-xl-inherit'; }
+        if (turnOnFold) {
+            classes = classes + ' fold';
+            addClasses = 1;
+        }
+
+        if (fullHeight) {
+            classes = classes + ' full-height';
+            addClasses = 1;
+        }
+        if (fullWidth) {
+            classes = classes + ' full-width';
+            addClasses = 1;
+        }
+        if (hideMobile) {
+            classes = classes + ' d-none';
+            addClasses = 1;
+        }
+        if (hideTablet) {
+            classes = classes + ' d-inherit d-md-none d-xl-inherit';
+            addClasses = 1;
+        }
         if (hideDesktop) { classes = classes + ' d-xl-none'; }
-        if(topPadding) {classes = classes + ' ' + topPadding;}
-        if(bottomPadding) {classes = classes + ' ' + bottomPadding;}
-        if(topMargin) {classes = classes + ' ' + topMargin;}
-        if(bottomMargin) {classes = classes + ' ' + bottomMargin;}
-        
+        if (topPadding) {
+            classes = classes + ' ' + topPadding;
+            addClasses = 1;
+        }
+        if (bottomPadding) {
+            classes = classes + ' ' + bottomPadding;
+            addClasses = 1;
+        }
+        if (topMargin) {
+            classes = classes + ' ' + topMargin;
+            addClasses = 1;
+        }
+        if (bottomMargin) {
+            classes = classes + ' ' + bottomMargin;
+            addClasses = 1;
+        }
+
         if (addClasses) {
             extraProps.className = classnames(extraProps.className, classes);
             //console.log(attributes);

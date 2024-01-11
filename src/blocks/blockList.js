@@ -5,6 +5,7 @@ const enableSidebarSelectOnBlocks = [
     'core/heading',
     'core/gallery',
     'core/list',
+    'core/group',
     'core/quote',
     'core/audio',
     'core/cover',

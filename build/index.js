@@ -13,7 +13,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   enableSidebarSelectOnBlocks: () => (/* binding */ enableSidebarSelectOnBlocks)
 /* harmony export */ });
 // Enable custom attributes on Image block
-const enableSidebarSelectOnBlocks = ['core/paragraph', 'core/image', 'core/heading', 'core/gallery', 'core/list', 'core/quote', 'core/audio', 'core/cover', 'core/file', 'core/video', 'core/table', 'core/verse', 'core/code', 'core/freeform', 'core/html', 'core/preformatted', 'core/pullquote', 'core/button', 'core/columns', 'core/media-text', 'core/more', 'core/nextpage', 'core/separator', 'core/spacer', 'core/shortcode', 'core/archives', 'ore/categories', 'core/latest-comments', 'core/latest-posts', 'core/calendar', 'core/rss', 'core/search', 'core/tag-cloud', 'core/embed', 'core-embed/twitter', 'core-embed/youtube', 'core-embed/facebook', 'core-embed/instagram', 'core-embed/wordpress', 'core-embed/soundcloud', 'core-embed/spotify', 'core-embed/flickr', 'core-embed/vimeo', 'core-embed/animoto', 'core-embed/cloudup', 'core-embed/collegehumor', 'core-embed/dailymotion', 'core-embed/funnyordie', 'core-embed/hulu', 'core-embed/imgur', 'core-embed/issuu', 'core-embed/kickstarter', 'core-embed/meetup-com', 'core-embed/mixcloud', 'core-embed/photobucket', 'core-embed/polldaddy', 'core-embed/reddit', 'core-embed/reverbnation', 'core-embed/screencast', 'core-embed/scribd', 'core-embed/slideshare', 'core-embed/smugmug', 'core-embed/speaker', 'core-embed/ted', 'core-embed/tumblr', 'core-embed/videopress', 'core-embed/wordpress-tv', 'wp-bootstrap-blocks/container', 'wp-bootstrap-blocks/row', 'wp-bootstrap-blocks/column'];
+const enableSidebarSelectOnBlocks = ['core/paragraph', 'core/image', 'core/heading', 'core/gallery', 'core/list', 'core/group', 'core/quote', 'core/audio', 'core/cover', 'core/file', 'core/video', 'core/table', 'core/verse', 'core/code', 'core/freeform', 'core/html', 'core/preformatted', 'core/pullquote', 'core/button', 'core/columns', 'core/media-text', 'core/more', 'core/nextpage', 'core/separator', 'core/spacer', 'core/shortcode', 'core/archives', 'ore/categories', 'core/latest-comments', 'core/latest-posts', 'core/calendar', 'core/rss', 'core/search', 'core/tag-cloud', 'core/embed', 'core-embed/twitter', 'core-embed/youtube', 'core-embed/facebook', 'core-embed/instagram', 'core-embed/wordpress', 'core-embed/soundcloud', 'core-embed/spotify', 'core-embed/flickr', 'core-embed/vimeo', 'core-embed/animoto', 'core-embed/cloudup', 'core-embed/collegehumor', 'core-embed/dailymotion', 'core-embed/funnyordie', 'core-embed/hulu', 'core-embed/imgur', 'core-embed/issuu', 'core-embed/kickstarter', 'core-embed/meetup-com', 'core-embed/mixcloud', 'core-embed/photobucket', 'core-embed/polldaddy', 'core-embed/reddit', 'core-embed/reverbnation', 'core-embed/screencast', 'core-embed/scribd', 'core-embed/slideshare', 'core-embed/smugmug', 'core-embed/speaker', 'core-embed/ted', 'core-embed/tumblr', 'core-embed/videopress', 'core-embed/wordpress-tv', 'wp-bootstrap-blocks/container', 'wp-bootstrap-blocks/row', 'wp-bootstrap-blocks/column'];
 
 
 /***/ }),
@@ -26,7 +26,6 @@ const enableSidebarSelectOnBlocks = ['core/paragraph', 'core/image', 'core/headi
 
 wp.domReady(() => {
   wp.blocks.unregisterBlockType('core/columns');
-  wp.blocks.unregisterBlockType('core/group');
   wp.blocks.unregisterBlockType('core/column');
 });
 
@@ -344,15 +343,16 @@ wp.hooks.addFilter('editor.BlockEdit', 'custom-attributes/with-sidebar-select', 
  */
 const withSidebarSelectProp = createHigherOrderComponent(BlockListBlock => {
   return props => {
-    console.log({
-      props
-    });
-    let classes, addClasses;
+    let classes, addClasses, turnOnFold;
     // If current block is not allowed
     if (!_blockList__WEBPACK_IMPORTED_MODULE_2__.enableSidebarSelectOnBlocks.includes(props.name)) {
       return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockListBlock, props);
     }
     let foldBackgroundColor = props.attributes.backgroundColor;
+    let foldColor = props.attributes.color;
+    if (foldColor) {
+      foldColor = foldColor.toString();
+    }
     if (foldBackgroundColor) {
       foldBackgroundColor = foldBackgroundColor.toString();
     }
@@ -373,42 +373,59 @@ const withSidebarSelectProp = createHigherOrderComponent(BlockListBlock => {
       bottomMargin
     } = attributes;
     if (matchNavBackground) {
-      classes = classes + ' fold';
+      turnOnFold = 1;
       addClasses = 1;
+      if (foldColor) {
+        classes = classes + ' colorMatch_' + foldColor;
+      }
       if (foldBackgroundColor) {
-        classes = classes + ' fold_' + foldBackgroundColor;
+        classes = classes + ' match-nav match_' + foldBackgroundColor;
       }
     }
     if (blockAnimation) {
+      turnOnFold = 1;
       classes = classes + '  animation-on ' + blockAnimation;
+      addClasses = 1;
+    }
+    if (turnOnFold) {
+      classes = classes + ' fold';
       addClasses = 1;
     }
     if (fullHeight) {
       classes = classes + ' full-height';
+      addClasses = 1;
     }
     if (fullWidth) {
       classes = classes + ' full-width';
+      addClasses = 1;
     }
     if (hideMobile) {
       classes = classes + ' d-none';
+      addClasses = 1;
     }
     if (hideTablet) {
       classes = classes + ' d-inherit d-md-none d-xl-inherit';
+      addClasses = 1;
     }
     if (hideDesktop) {
       classes = classes + ' d-xl-none';
+      addClasses = 1;
     }
     if (topPadding) {
       classes = classes + ' ' + topPadding;
+      addClasses = 1;
     }
     if (bottomPadding) {
       classes = classes + ' ' + bottomPadding;
+      addClasses = 1;
     }
     if (topMargin) {
       classes = classes + ' ' + topMargin;
+      addClasses = 1;
     }
     if (bottomMargin) {
       classes = classes + ' ' + bottomMargin;
+      addClasses = 1;
     }
     if (addClasses) {
       return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockListBlock, (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
@@ -432,7 +449,8 @@ const saveSidebarSelectAttribute = (extraProps, blockType, attributes) => {
     let foldBackgroundColor = attributes.backgroundColor;
     //foldBackgroundColor = foldBackgroundColor.toString();
 
-    let classes, addClasses;
+    let foldColor = attributes.color;
+    let classes, addClasses, turnOnFold;
     const {
       matchNavBackground,
       blockAnimation,
@@ -454,45 +472,59 @@ const saveSidebarSelectAttribute = (extraProps, blockType, attributes) => {
       toggleField,
       selectField
     } = attributes;
-    //const blockProps = useBlockProps.save();
-
     if (matchNavBackground) {
-      classes = classes + ' fold';
+      turnOnFold = 1;
       addClasses = 1;
+      if (foldColor) {
+        classes = classes + ' colorMatch_' + foldColor;
+      }
       if (foldBackgroundColor) {
-        classes = classes + ' fold_' + foldBackgroundColor;
+        classes = classes + '  match-nav match_' + foldBackgroundColor;
       }
     }
     if (blockAnimation) {
+      turnOnFold = 1;
       classes = classes + '  animation-on ' + blockAnimation;
+      addClasses = 1;
+    }
+    if (turnOnFold) {
+      classes = classes + ' fold';
       addClasses = 1;
     }
     if (fullHeight) {
       classes = classes + ' full-height';
+      addClasses = 1;
     }
     if (fullWidth) {
       classes = classes + ' full-width';
+      addClasses = 1;
     }
     if (hideMobile) {
       classes = classes + ' d-none';
+      addClasses = 1;
     }
     if (hideTablet) {
       classes = classes + ' d-inherit d-md-none d-xl-inherit';
+      addClasses = 1;
     }
     if (hideDesktop) {
       classes = classes + ' d-xl-none';
     }
     if (topPadding) {
       classes = classes + ' ' + topPadding;
+      addClasses = 1;
     }
     if (bottomPadding) {
       classes = classes + ' ' + bottomPadding;
+      addClasses = 1;
     }
     if (topMargin) {
       classes = classes + ' ' + topMargin;
+      addClasses = 1;
     }
     if (bottomMargin) {
       classes = classes + ' ' + bottomMargin;
+      addClasses = 1;
     }
     if (addClasses) {
       extraProps.className = classnames__WEBPACK_IMPORTED_MODULE_3___default()(extraProps.className, classes);
