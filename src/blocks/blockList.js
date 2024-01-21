@@ -1,5 +1,7 @@
 // Enable custom attributes on Image block
 const enableSidebarSelectOnBlocks = [
+    'acf/media',
+    'acf/base',
     'core/paragraph',
     'core/image',
     'core/heading',
