@@ -11,7 +11,10 @@ const enableSidebarSelectOnBlocks = [
     'core/quote',
     'core/audio',
     'core/cover',
+    'acf/social-media-nav',
+    'acf/content-slider',
     'core/file',
+    'acf/footer-nav',
     'core/video',
     'core/table',
     'core/verse',
@@ -72,7 +75,10 @@ const enableSidebarSelectOnBlocks = [
     'core-embed/wordpress-tv',
     'wp-bootstrap-blocks/container',
     'wp-bootstrap-blocks/row',
-    'wp-bootstrap-blocks/column'
+    'wp-bootstrap-blocks/column',
+    'acf/floating-cta',
+    'acf/card',
+    'acf/card-grid'
 
 ];
 

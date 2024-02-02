@@ -1,23 +1,6 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/blocks/blockList.js":
-/*!*********************************!*\
-  !*** ./src/blocks/blockList.js ***!
-  \*********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   enableSidebarSelectOnBlocks: () => (/* binding */ enableSidebarSelectOnBlocks)
-/* harmony export */ });
-// Enable custom attributes on Image block
-const enableSidebarSelectOnBlocks = ['acf/media', 'acf/base', 'core/paragraph', 'core/image', 'core/heading', 'core/gallery', 'core/list', 'core/group', 'core/quote', 'core/audio', 'core/cover', 'core/file', 'core/video', 'core/table', 'core/verse', 'core/code', 'core/freeform', 'core/html', 'core/preformatted', 'core/pullquote', 'core/button', 'core/columns', 'core/media-text', 'core/more', 'core/nextpage', 'core/separator', 'core/spacer', 'core/shortcode', 'core/archives', 'ore/categories', 'core/latest-comments', 'core/latest-posts', 'core/calendar', 'core/rss', 'core/search', 'core/tag-cloud', 'core/embed', 'core-embed/twitter', 'core-embed/youtube', 'core-embed/facebook', 'core-embed/instagram', 'core-embed/wordpress', 'core-embed/soundcloud', 'core-embed/spotify', 'core-embed/flickr', 'core-embed/vimeo', 'core-embed/animoto', 'core-embed/cloudup', 'core-embed/collegehumor', 'core-embed/dailymotion', 'core-embed/funnyordie', 'core-embed/hulu', 'core-embed/imgur', 'core-embed/issuu', 'core-embed/kickstarter', 'core-embed/meetup-com', 'core-embed/mixcloud', 'core-embed/photobucket', 'core-embed/polldaddy', 'core-embed/reddit', 'core-embed/reverbnation', 'core-embed/screencast', 'core-embed/scribd', 'core-embed/slideshare', 'core-embed/smugmug', 'core-embed/speaker', 'core-embed/ted', 'core-embed/tumblr', 'core-embed/videopress', 'core-embed/wordpress-tv', 'wp-bootstrap-blocks/container', 'wp-bootstrap-blocks/row', 'wp-bootstrap-blocks/column'];
-
-
-/***/ }),
-
 /***/ "./src/blocks/disableBlocks.js":
 /*!*************************************!*\
   !*** ./src/blocks/disableBlocks.js ***!
@@ -39,12 +22,11 @@ wp.domReady(() => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _blockList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./blockList */ "./src/blocks/blockList.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _sidebar_setAttributes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sidebar/setAttributes */ "./src/blocks/sidebar/setAttributes.js");
+/* harmony import */ var _sidebar_withSidebarSelect__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sidebar/withSidebarSelect */ "./src/blocks/sidebar/withSidebarSelect.js");
+/* harmony import */ var _sidebar_withSidebarSelectProp__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./sidebar/withSidebarSelectProp */ "./src/blocks/sidebar/withSidebarSelectProp.js");
+/* harmony import */ var _sidebar_saveAttributes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sidebar/saveAttributes */ "./src/blocks/sidebar/saveAttributes.js");
+
 
 
 
@@ -53,32 +35,157 @@ __webpack_require__.r(__webpack_exports__);
 const {
   __
 } = wp.i18n;
-const {
-  createHigherOrderComponent
-} = wp.compose;
-const {
-  Fragment
-} = wp.element;
-const {
-  InspectorControls,
-  useBlockProps
-} = wp.blockEditor;
-const {
-  CheckboxControl,
-  RadioControl,
-  TextControl,
-  ToggleControl,
-  SelectControl,
-  PanelBody
-} = wp.components;
+wp.hooks.addFilter('blocks.registerBlockType', 'custom-attributes/set-sidebar-select-attribute', _sidebar_setAttributes__WEBPACK_IMPORTED_MODULE_0__.setSidebarSelectAttribute);
+wp.hooks.addFilter('editor.BlockEdit', 'custom-attributes/with-sidebar-select', _sidebar_withSidebarSelect__WEBPACK_IMPORTED_MODULE_1__.withSidebarSelect);
+wp.hooks.addFilter('editor.BlockListBlock', 'custom-attributes/with-sidebar-select-prop', _sidebar_withSidebarSelectProp__WEBPACK_IMPORTED_MODULE_2__.withSidebarSelectProp);
+wp.hooks.addFilter('blocks.getSaveContent.extraProps', 'custom-attributes/save-sidebar-select-attribute', _sidebar_saveAttributes__WEBPACK_IMPORTED_MODULE_3__.saveSidebarSelectAttribute);
+
+/***/ }),
+
+/***/ "./src/blocks/sidebar/blockList.js":
+/*!*****************************************!*\
+  !*** ./src/blocks/sidebar/blockList.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   enableSidebarSelectOnBlocks: () => (/* binding */ enableSidebarSelectOnBlocks)
+/* harmony export */ });
+// Enable custom attributes on Image block
+const enableSidebarSelectOnBlocks = ['acf/media', 'acf/base', 'core/paragraph', 'core/image', 'core/heading', 'core/gallery', 'core/list', 'core/group', 'core/quote', 'core/audio', 'core/cover', 'acf/social-media-nav', 'acf/content-slider', 'core/file', 'acf/footer-nav', 'core/video', 'core/table', 'core/verse', 'core/code', 'core/freeform', 'core/html', 'core/preformatted', 'core/pullquote', 'core/button', 'core/columns', 'core/media-text', 'core/more', 'core/nextpage', 'core/separator', 'core/spacer', 'core/shortcode', 'core/archives', 'ore/categories', 'core/latest-comments', 'core/latest-posts', 'core/calendar', 'core/rss', 'core/search', 'core/tag-cloud', 'core/embed', 'core-embed/twitter', 'core-embed/youtube', 'core-embed/facebook', 'core-embed/instagram', 'core-embed/wordpress', 'core-embed/soundcloud', 'core-embed/spotify', 'core-embed/flickr', 'core-embed/vimeo', 'core-embed/animoto', 'core-embed/cloudup', 'core-embed/collegehumor', 'core-embed/dailymotion', 'core-embed/funnyordie', 'core-embed/hulu', 'core-embed/imgur', 'core-embed/issuu', 'core-embed/kickstarter', 'core-embed/meetup-com', 'core-embed/mixcloud', 'core-embed/photobucket', 'core-embed/polldaddy', 'core-embed/reddit', 'core-embed/reverbnation', 'core-embed/screencast', 'core-embed/scribd', 'core-embed/slideshare', 'core-embed/smugmug', 'core-embed/speaker', 'core-embed/ted', 'core-embed/tumblr', 'core-embed/videopress', 'core-embed/wordpress-tv', 'wp-bootstrap-blocks/container', 'wp-bootstrap-blocks/row', 'wp-bootstrap-blocks/column', 'acf/floating-cta', 'acf/card', 'acf/card-grid'];
 
 
-/**
- * Declare our custom attribute
- */
+/***/ }),
+
+/***/ "./src/blocks/sidebar/saveAttributes.js":
+/*!**********************************************!*\
+  !*** ./src/blocks/sidebar/saveAttributes.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   saveSidebarSelectAttribute: () => (/* binding */ saveSidebarSelectAttribute)
+/* harmony export */ });
+/* harmony import */ var _blockList__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./blockList */ "./src/blocks/sidebar/blockList.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+// saveAttribute.js
+
+
+const saveSidebarSelectAttribute = (extraProps, blockType, attributes) => {
+  if (_blockList__WEBPACK_IMPORTED_MODULE_0__.enableSidebarSelectOnBlocks.includes(blockType.name)) {
+    let foldBackgroundColor = attributes.backgroundColor;
+    let foldColor = attributes.color;
+    let classes, addClasses, turnOnFold;
+    const {
+      matchNavBackground,
+      blockAnimation,
+      fullHeight,
+      fullWidth,
+      hideMobile,
+      hideTablet,
+      hideDesktop,
+      topPadding,
+      bottomPadding,
+      topMargin,
+      bottomMargin,
+      backgroundImage,
+      // Added for background image
+      seperatorTop,
+      seperatorBottom
+    } = attributes;
+    if (matchNavBackground) {
+      turnOnFold = 1;
+      addClasses = 1;
+      if (foldColor) {
+        classes = classes + ' colorMatch_' + foldColor;
+      }
+      if (foldBackgroundColor) {
+        classes = classes + '  match-nav match_' + foldBackgroundColor;
+      }
+    }
+    if (blockAnimation) {
+      turnOnFold = 1;
+      classes = classes + '  animation-on ' + blockAnimation;
+      addClasses = 1;
+    }
+    if (turnOnFold) {
+      classes = classes + ' fold';
+      addClasses = 1;
+    }
+    if (fullHeight) {
+      classes = classes + ' full-height';
+      addClasses = 1;
+    }
+    if (fullWidth) {
+      classes = classes + ' full-width';
+      addClasses = 1;
+    }
+    if (hideMobile) {
+      classes = classes + ' d-none d-md-inherit';
+      addClasses = 1;
+    }
+    if (hideTablet) {
+      classes = classes + ' d-inherit d-md-none d-xl-inherit';
+      addClasses = 1;
+    }
+    if (hideDesktop) {
+      classes = classes + ' d-xl-none';
+      addClasses = 1;
+    }
+    if (topPadding) {
+      classes = classes + ' ' + topPadding;
+      addClasses = 1;
+    }
+    if (bottomPadding) {
+      classes = classes + ' ' + bottomPadding;
+      addClasses = 1;
+    }
+    if (topMargin) {
+      classes = classes + ' ' + topMargin;
+      addClasses = 1;
+    }
+    if (bottomMargin) {
+      classes = classes + ' ' + bottomMargin;
+      addClasses = 1;
+    }
+
+    // Check if backgroundImage is set
+    if (backgroundImage) {
+      extraProps.style = {
+        backgroundImage: `url('${backgroundImage}')`
+      };
+      classes = classes + ' has-background-image';
+    }
+    if (addClasses) {
+      extraProps.className = classnames__WEBPACK_IMPORTED_MODULE_1___default()(extraProps.className, classes);
+    }
+  }
+  return extraProps;
+};
+
+/***/ }),
+
+/***/ "./src/blocks/sidebar/setAttributes.js":
+/*!*********************************************!*\
+  !*** ./src/blocks/sidebar/setAttributes.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   setSidebarSelectAttribute: () => (/* binding */ setSidebarSelectAttribute)
+/* harmony export */ });
+/* harmony import */ var _blockList__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./blockList */ "./src/blocks/sidebar/blockList.js");
+// setAttributes.js
+
 const setSidebarSelectAttribute = (settings, name) => {
-  // Do nothing if it's another block than our defined ones.
-  if (!_blockList__WEBPACK_IMPORTED_MODULE_2__.enableSidebarSelectOnBlocks.includes(name)) {
+  if (!_blockList__WEBPACK_IMPORTED_MODULE_0__.enableSidebarSelectOnBlocks.includes(name)) {
     return settings;
   }
   return Object.assign({}, settings, {
@@ -101,6 +208,12 @@ const setSidebarSelectAttribute = (settings, name) => {
       hideDesktop: {
         type: 'boolean'
       },
+      seperatorTop: {
+        type: 'boolean'
+      },
+      seperatorBottom: {
+        type: 'boolean'
+      },
       blockAnimation: {
         type: 'string'
       },
@@ -115,16 +228,63 @@ const setSidebarSelectAttribute = (settings, name) => {
       },
       bottomMargin: {
         type: 'string'
-      }
+      },
+      backgroundImage: {
+        type: 'string'
+      } // Added line for background image
     })
   });
 };
-wp.hooks.addFilter('blocks.registerBlockType', 'custom-attributes/set-sidebar-select-attribute', setSidebarSelectAttribute);
+
+/***/ }),
+
+/***/ "./src/blocks/sidebar/withSidebarSelect.js":
+/*!*************************************************!*\
+  !*** ./src/blocks/sidebar/withSidebarSelect.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   withSidebarSelect: () => (/* binding */ withSidebarSelect)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _blockList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./blockList */ "./src/blocks/sidebar/blockList.js");
+/* harmony import */ var _setAttributes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./setAttributes */ "./src/blocks/sidebar/setAttributes.js");
+
+// withSidebarSelect.js
+
+
+const {
+  __
+} = wp.i18n;
+const {
+  createHigherOrderComponent
+} = wp.compose;
+const {
+  Fragment
+} = wp.element;
+const {
+  InspectorControls,
+  InspectorAdvancedControls,
+  MediaUpload,
+  MediaUploadCheck
+} = wp.blockEditor;
+const {
+  ToggleControl,
+  PanelBody,
+  TextControl,
+  RadioControl,
+  CheckboxControl,
+  SelectControl,
+  Button
+} = wp.components;
 const withSidebarSelect = createHigherOrderComponent(BlockEdit => {
   return props => {
-    // If current block is not allowed
-    if (!_blockList__WEBPACK_IMPORTED_MODULE_2__.enableSidebarSelectOnBlocks.includes(props.name)) {
-      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockEdit, props);
+    if (!_blockList__WEBPACK_IMPORTED_MODULE_1__.enableSidebarSelectOnBlocks.includes(props.name)) {
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, props);
     }
     const {
       attributes,
@@ -142,17 +302,11 @@ const withSidebarSelect = createHigherOrderComponent(BlockEdit => {
       topPadding,
       bottomPadding,
       topMargin,
-      bottomMargin
+      bottomMargin,
+      backgroundImage,
+      seperatorTop,
+      seperatorBottom
     } = attributes;
-    const {
-      ToggleControl,
-      RadioControl,
-      CheckboxControl,
-      SelectControl
-    } = wp.components;
-    const {
-      InspectorAdvancedControls
-    } = wp.blockEditor;
     function onChangeBlockAnimation(newValue) {
       setAttributes({
         blockAnimation: newValue
@@ -178,31 +332,37 @@ const withSidebarSelect = createHigherOrderComponent(BlockEdit => {
         bottomMargin: newValue
       });
     }
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockEdit, props), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(PanelBody, {
+    // Add new function for changing background image
+    function onChangeBackgroundImage(newImage) {
+      setAttributes({
+        backgroundImage: newImage.sizes.full.url
+      });
+    }
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, props), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(PanelBody, {
       title: __('Theme Main Base')
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(PanelBody, {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(PanelBody, {
       title: __('Block Settings')
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(ToggleControl, {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ToggleControl, {
       label: wp.i18n.__('Match Nav Background on scroll', 'emm-bootstrap-base'),
       checked: !!attributes.matchNavBackground,
       onChange: newval => setAttributes({
         matchNavBackground: !attributes.matchNavBackground
       })
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(ToggleControl, {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ToggleControl, {
       label: wp.i18n.__('Make Full Width', 'emm-bootstrap-base'),
       help: "Make this block go edge to edge (good for Background colors)",
       checked: !!attributes.fullWidth,
       onChange: newval => setAttributes({
         fullWidth: !attributes.fullWidth
       })
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(ToggleControl, {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ToggleControl, {
       label: wp.i18n.__('Make Full Height', 'emm-bootstrap-base'),
       help: "Make this block go edge to edge (good for Background colors)",
       checked: !!attributes.fullHeight,
       onChange: newval => setAttributes({
         fullHeight: !attributes.fullHeight
       })
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(SelectControl, {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(SelectControl, {
       label: "Animate this block",
       value: blockAnimation,
       options: [{
@@ -219,9 +379,33 @@ const withSidebarSelect = createHigherOrderComponent(BlockEdit => {
         value: 'bounce-in'
       }],
       onChange: onChangeBlockAnimation
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(PanelBody, {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(MediaUploadCheck, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(MediaUpload, {
+      onSelect: onChangeBackgroundImage,
+      allowedTypes: ['image'],
+      value: backgroundImage,
+      render: ({
+        open
+      }) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Button, {
+        className: "components-button is-primary",
+        onClick: open
+      }, "Add Background image to block")
+    }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(PanelBody, {
       title: __('Spacing')
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(SelectControl, {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ToggleControl, {
+      label: wp.i18n.__('Seperator Top', 'emm-bootstrap-base'),
+      help: "Add a seperator line to the top of this block",
+      checked: !!attributes.seperatorTop,
+      onChange: newval => setAttributes({
+        seperatorTop: !attributes.seperatorTop
+      })
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ToggleControl, {
+      label: wp.i18n.__('Seperator Bottom', 'emm-bootstrap-base'),
+      help: "Add a seperator line to the Bottom of this block",
+      checked: !!attributes.seperatorBottom,
+      onChange: newval => setAttributes({
+        seperatorBottom: !attributes.seperatorBottom
+      })
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(SelectControl, {
       label: "Padding Top",
       value: topPadding,
       options: [{
@@ -244,7 +428,7 @@ const withSidebarSelect = createHigherOrderComponent(BlockEdit => {
         value: 'pt-5'
       }],
       onChange: onChangeTopPadding
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(SelectControl, {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(SelectControl, {
       label: "Padding Bottom",
       value: bottomPadding,
       options: [{
@@ -267,7 +451,7 @@ const withSidebarSelect = createHigherOrderComponent(BlockEdit => {
         value: 'pb-5'
       }],
       onChange: onChangeBottomPadding
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(SelectControl, {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(SelectControl, {
       label: "Margin Top",
       value: topMargin,
       options: [{
@@ -290,7 +474,7 @@ const withSidebarSelect = createHigherOrderComponent(BlockEdit => {
         value: 'mt-5'
       }],
       onChange: onChangeTopMargin
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(SelectControl, {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(SelectControl, {
       label: "Margin Bottom",
       value: bottomMargin,
       options: [{
@@ -313,21 +497,21 @@ const withSidebarSelect = createHigherOrderComponent(BlockEdit => {
         value: 'mb-5'
       }],
       onChange: onChangeBottomMargin
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(PanelBody, {
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(PanelBody, {
       title: __('Visibility')
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(ToggleControl, {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ToggleControl, {
       label: wp.i18n.__('Hide on Mobile', 'emm-bootstrap-base'),
       checked: !!attributes.hideMobile,
       onChange: newval => setAttributes({
         hideMobile: !attributes.hideMobile
       })
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(ToggleControl, {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ToggleControl, {
       label: wp.i18n.__('Hide on Tablet', 'emm-bootstrap-base'),
       checked: !!attributes.hideTablet,
       onChange: newval => setAttributes({
         hideTablet: !attributes.hideTablet
       })
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(ToggleControl, {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ToggleControl, {
       label: wp.i18n.__('Hide on Desktop', 'emm-bootstrap-base'),
       checked: !!attributes.hideDesktop,
       onChange: newval => setAttributes({
@@ -336,15 +520,36 @@ const withSidebarSelect = createHigherOrderComponent(BlockEdit => {
     })))));
   };
 }, 'withSidebarSelect');
-wp.hooks.addFilter('editor.BlockEdit', 'custom-attributes/with-sidebar-select', withSidebarSelect);
 
-/**
- * Add custom class to block in Edit
- */
+/***/ }),
+
+/***/ "./src/blocks/sidebar/withSidebarSelectProp.js":
+/*!*****************************************************!*\
+  !*** ./src/blocks/sidebar/withSidebarSelectProp.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   withSidebarSelectProp: () => (/* binding */ withSidebarSelectProp)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _blockList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./blockList */ "./src/blocks/sidebar/blockList.js");
+/* harmony import */ var _setAttributes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./setAttributes */ "./src/blocks/sidebar/setAttributes.js");
+
+
+// withSidebarSelectProp.js
+
+
+const {
+  createHigherOrderComponent
+} = wp.compose;
 const withSidebarSelectProp = createHigherOrderComponent(BlockListBlock => {
   return props => {
     let classes, addClasses, turnOnFold;
-    // If current block is not allowed
     if (!_blockList__WEBPACK_IMPORTED_MODULE_2__.enableSidebarSelectOnBlocks.includes(props.name)) {
       return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockListBlock, props);
     }
@@ -370,7 +575,11 @@ const withSidebarSelectProp = createHigherOrderComponent(BlockListBlock => {
       topPadding,
       bottomPadding,
       topMargin,
-      bottomMargin
+      bottomMargin,
+      backgroundImage,
+      // Added for background image
+      seperatorTop,
+      seperatorBottom
     } = attributes;
     if (matchNavBackground) {
       turnOnFold = 1;
@@ -419,6 +628,14 @@ const withSidebarSelectProp = createHigherOrderComponent(BlockListBlock => {
       classes = classes + ' ' + bottomPadding;
       addClasses = 1;
     }
+    if (seperatorTop) {
+      classes = classes + ' ' + seperatorTop;
+      addClasses = 1;
+    }
+    if (seperatorBottom) {
+      classes = classes + ' ' + seperatorBottom;
+      addClasses = 1;
+    }
     if (topMargin) {
       classes = classes + ' ' + topMargin;
       addClasses = 1;
@@ -426,6 +643,15 @@ const withSidebarSelectProp = createHigherOrderComponent(BlockListBlock => {
     if (bottomMargin) {
       classes = classes + ' ' + bottomMargin;
       addClasses = 1;
+    }
+
+    // Check if backgroundImage is set
+    if (backgroundImage) {
+      classes = classes + ' has-background-image';
+      addClasses = 1;
+      props.style = {
+        backgroundImage: `url('${backgroundImage}')`
+      };
     }
     if (addClasses) {
       return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockListBlock, (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
@@ -437,103 +663,6 @@ const withSidebarSelectProp = createHigherOrderComponent(BlockListBlock => {
     }
   };
 }, 'withSidebarSelectProp');
-wp.hooks.addFilter('editor.BlockListBlock', 'custom-attributes/with-sidebar-select-prop', withSidebarSelectProp);
-
-/**
- * Save our custom attribute
- */
-const saveSidebarSelectAttribute = (extraProps, blockType, attributes) => {
-  // Do nothing if it's another block than our defined ones.
-
-  if (_blockList__WEBPACK_IMPORTED_MODULE_2__.enableSidebarSelectOnBlocks.includes(blockType.name)) {
-    let foldBackgroundColor = attributes.backgroundColor;
-    //foldBackgroundColor = foldBackgroundColor.toString();
-
-    let foldColor = attributes.color;
-    let classes, addClasses, turnOnFold;
-    const {
-      matchNavBackground,
-      blockAnimation,
-      fullHeight,
-      fullWidth,
-      hideMobile,
-      hideTablet,
-      hideDesktop,
-      topPadding,
-      bottomPadding,
-      topMargin,
-      bottomMargin
-    } = attributes;
-    const {
-      content,
-      checkboxField,
-      radioField,
-      textField,
-      toggleField,
-      selectField
-    } = attributes;
-    if (matchNavBackground) {
-      turnOnFold = 1;
-      addClasses = 1;
-      if (foldColor) {
-        classes = classes + ' colorMatch_' + foldColor;
-      }
-      if (foldBackgroundColor) {
-        classes = classes + '  match-nav match_' + foldBackgroundColor;
-      }
-    }
-    if (blockAnimation) {
-      turnOnFold = 1;
-      classes = classes + '  animation-on ' + blockAnimation;
-      addClasses = 1;
-    }
-    if (turnOnFold) {
-      classes = classes + ' fold';
-      addClasses = 1;
-    }
-    if (fullHeight) {
-      classes = classes + ' full-height';
-      addClasses = 1;
-    }
-    if (fullWidth) {
-      classes = classes + ' full-width';
-      addClasses = 1;
-    }
-    if (hideMobile) {
-      classes = classes + ' d-none';
-      addClasses = 1;
-    }
-    if (hideTablet) {
-      classes = classes + ' d-inherit d-md-none d-xl-inherit';
-      addClasses = 1;
-    }
-    if (hideDesktop) {
-      classes = classes + ' d-xl-none';
-    }
-    if (topPadding) {
-      classes = classes + ' ' + topPadding;
-      addClasses = 1;
-    }
-    if (bottomPadding) {
-      classes = classes + ' ' + bottomPadding;
-      addClasses = 1;
-    }
-    if (topMargin) {
-      classes = classes + ' ' + topMargin;
-      addClasses = 1;
-    }
-    if (bottomMargin) {
-      classes = classes + ' ' + bottomMargin;
-      addClasses = 1;
-    }
-    if (addClasses) {
-      extraProps.className = classnames__WEBPACK_IMPORTED_MODULE_3___default()(extraProps.className, classes);
-      //console.log(attributes);
-    }
-  }
-  return extraProps;
-};
-wp.hooks.addFilter('blocks.getSaveContent.extraProps', 'custom-attributes/save-sidebar-select-attribute', saveSidebarSelectAttribute);
 
 /***/ }),
 
