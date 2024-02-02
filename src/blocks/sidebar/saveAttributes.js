@@ -76,6 +76,14 @@ export const saveSidebarSelectAttribute = (extraProps, blockType, attributes) =>
             classes = classes + ' ' + bottomPadding;
             addClasses = 1;
         }
+        if (seperatorTop) {
+            classes = classes + ' ' + seperatorTop;
+            addClasses = 1;
+        }
+        if (seperatorBottom) {
+            classes = classes + ' ' + seperatorBottom;
+            addClasses = 1;
+        }
         if (topMargin) {
             classes = classes + ' ' + topMargin;
             addClasses = 1;

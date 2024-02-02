@@ -78,7 +78,8 @@ const enableSidebarSelectOnBlocks = [
     'wp-bootstrap-blocks/column',
     'acf/floating-cta',
     'acf/card',
-    'acf/card-grid'
+    'acf/card-grid',
+    'acf/stats'
 
 ];
 
