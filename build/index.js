@@ -434,6 +434,9 @@ const withSidebarSelect = createHigherOrderComponent(BlockEdit => {
       }, {
         label: 'Largest',
         value: 'pt-5'
+      }, {
+        label: 'Size of gutter',
+        value: 'pt-gutter'
       }],
       onChange: onChangeTopPadding
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(SelectControl, {
@@ -457,6 +460,9 @@ const withSidebarSelect = createHigherOrderComponent(BlockEdit => {
       }, {
         label: 'Largest',
         value: 'pb-5'
+      }, {
+        label: 'Size of gutter',
+        value: 'pb-gutter'
       }],
       onChange: onChangeBottomPadding
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(SelectControl, {
@@ -480,6 +486,9 @@ const withSidebarSelect = createHigherOrderComponent(BlockEdit => {
       }, {
         label: 'Largest',
         value: 'mt-5'
+      }, {
+        label: 'Size of gutter',
+        value: 'mt-gutter'
       }],
       onChange: onChangeTopMargin
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(SelectControl, {
@@ -503,6 +512,9 @@ const withSidebarSelect = createHigherOrderComponent(BlockEdit => {
       }, {
         label: 'Largest',
         value: 'mb-5'
+      }, {
+        label: 'Size of gutter',
+        value: 'mb-gutter'
       }],
       onChange: onChangeBottomMargin
     })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(PanelBody, {

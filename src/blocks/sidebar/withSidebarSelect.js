@@ -112,6 +112,7 @@ export const withSidebarSelect = createHigherOrderComponent((BlockEdit) => {
                                     { label: 'Medium', value: 'pt-3' },
                                     { label: 'Large', value: 'pt-4' },
                                     { label: 'Largest', value: 'pt-5' },
+                                    { label: 'Size of gutter', value: 'pt-gutter' },
                                 ]}
                                 onChange={onChangeTopPadding}
                             />
@@ -125,6 +126,7 @@ export const withSidebarSelect = createHigherOrderComponent((BlockEdit) => {
                                     { label: 'Medium', value: 'pb-3' },
                                     { label: 'Large', value: 'pb-4' },
                                     { label: 'Largest', value: 'pb-5' },
+                                    { label: 'Size of gutter', value: 'pb-gutter' },
                                 ]}
                                 onChange={onChangeBottomPadding}
                             />
@@ -138,6 +140,7 @@ export const withSidebarSelect = createHigherOrderComponent((BlockEdit) => {
                                     { label: 'Medium', value: 'mt-3' },
                                     { label: 'Large', value: 'mt-4' },
                                     { label: 'Largest', value: 'mt-5' },
+                                    { label: 'Size of gutter', value: 'mt-gutter' },
                                 ]}
                                 onChange={onChangeTopMargin}
                             />
@@ -151,6 +154,7 @@ export const withSidebarSelect = createHigherOrderComponent((BlockEdit) => {
                                     { label: 'Medium', value: 'mb-3' },
                                     { label: 'Large', value: 'mb-4' },
                                     { label: 'Largest', value: 'mb-5' },
+                                    { label: 'Size of gutter', value: 'mb-gutter' },
                                 ]}
                                 onChange={onChangeBottomMargin}
                             />
