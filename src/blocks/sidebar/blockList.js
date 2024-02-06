@@ -48,6 +48,7 @@ const enableSidebarSelectOnBlocks = [
     'core-embed/soundcloud',
     'core-embed/spotify',
     'core-embed/flickr',
+    'core/list-item',
     'core-embed/vimeo',
     'core-embed/animoto',
     'core-embed/cloudup',
@@ -79,7 +80,10 @@ const enableSidebarSelectOnBlocks = [
     'acf/floating-cta',
     'acf/card',
     'acf/card-grid',
-    'acf/stats'
+    'acf/stats',
+    'acf/half-screen',
+    'acf/content-loop',
+    'acf/logo-carousel'
 
 ];
 
