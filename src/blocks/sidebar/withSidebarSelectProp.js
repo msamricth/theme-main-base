@@ -88,11 +88,11 @@ export const withSidebarSelectProp = createHigherOrderComponent((BlockListBlock)
             addClasses = 1;
         }
         if (seperatorTop) {
-            classes = classes + ' ' + seperatorTop;
+            classes = classes + '  sperator-top';
             addClasses = 1;
         }
         if (seperatorBottom) {
-            classes = classes + ' ' + seperatorBottom;
+            classes = classes + ' sperator-bottom';
             addClasses = 1;
         }
         if (topMargin) {

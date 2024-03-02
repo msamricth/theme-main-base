@@ -7,7 +7,7 @@ export const saveSidebarSelectAttribute = (extraProps, blockType, attributes) =>
     if (enableSidebarSelectOnBlocks.includes(blockType.name)) {
         let foldBackgroundColor = attributes.backgroundColor;
         let foldColor = attributes.color;
-        let classes,
+        let classes = '',
             addClasses,
             turnOnFold;
         const {
@@ -32,7 +32,7 @@ export const saveSidebarSelectAttribute = (extraProps, blockType, attributes) =>
             addClasses = 1;
 
             if (foldColor) {
-                classes = classes + ' colorMatch_' + foldColor;
+            //    classes = classes + ' colorMatch_' + foldColor;
             }
             if (foldBackgroundColor) {
                 classes = classes + '  match-nav match_' + foldBackgroundColor;
@@ -77,11 +77,11 @@ export const saveSidebarSelectAttribute = (extraProps, blockType, attributes) =>
             addClasses = 1;
         }
         if (seperatorTop) {
-            classes = classes + ' ' + seperatorTop;
+            classes = classes + '  sperator-top';
             addClasses = 1;
         }
         if (seperatorBottom) {
-            classes = classes + ' ' + seperatorBottom;
+            classes = classes + ' sperator-bottom';
             addClasses = 1;
         }
         if (topMargin) {
