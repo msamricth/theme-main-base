@@ -88,7 +88,8 @@ const enableSidebarSelectOnBlocks = [
     'acf/contact-form-7',
     'acf/staff-card',
     'core/post-title',
-    'acf/accordion-or-tabs'
+    'acf/accordion-or-tabs',
+    'acf/word-fumbler'
 
 ];
 

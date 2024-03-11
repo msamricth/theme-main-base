@@ -15,7 +15,7 @@ export const withSidebarSelectProp = createHigherOrderComponent((BlockListBlock)
         }
 
         let foldBackgroundColor = props.attributes.backgroundColor;
-        let foldColor = props.attributes.color;
+        let foldColor = props.attributes.textColor;
         if (foldColor) {
             foldColor = foldColor.toString();
         }

@@ -6,7 +6,7 @@ import classnames from 'classnames';
 export const saveSidebarSelectAttribute = (extraProps, blockType, attributes) => {
     if (enableSidebarSelectOnBlocks.includes(blockType.name)) {
         let foldBackgroundColor = attributes.backgroundColor;
-        let foldColor = attributes.color;
+        let foldColor = attributes.textColor;
         let classes = '',
             addClasses,
             turnOnFold;
