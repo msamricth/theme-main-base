@@ -89,7 +89,10 @@ const enableSidebarSelectOnBlocks = [
     'acf/staff-card',
     'core/post-title',
     'acf/accordion-or-tabs',
-    'acf/word-fumbler'
+    'acf/word-fumbler',
+    'acf/content-slider-gutenberg-slide',
+    'acf/big-list',
+    'acf/big-list-item'
 
 ];
 
