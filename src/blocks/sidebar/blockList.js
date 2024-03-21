@@ -92,7 +92,8 @@ const enableSidebarSelectOnBlocks = [
     'acf/word-fumbler',
     'acf/content-slider-gutenberg-slide',
     'acf/big-list',
-    'acf/big-list-item'
+    'acf/big-list-item',
+    'airtable-wp/dynamic-form-builder'
 
 ];
 
