@@ -73,6 +73,8 @@ export const withSidebarSelect = createHigherOrderComponent((BlockEdit) => {
                                     { label: 'Fade In', value: 'fade-in' },
                                     { label: 'Slide Up', value: 'slide-up' },
                                     { label: 'Bounce In', value: 'bounce-in' },
+                                    { label: 'Subtle Slide In', value: 'subtle-slide-in' },
+                                    { label: 'Custom', value: 'custom' },
                                 ]}
                                 onChange={onChangeBlockAnimation}
                             />

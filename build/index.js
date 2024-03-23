@@ -387,6 +387,12 @@ const withSidebarSelect = createHigherOrderComponent(BlockEdit => {
       }, {
         label: 'Bounce In',
         value: 'bounce-in'
+      }, {
+        label: 'Subtle Slide In',
+        value: 'subtle-slide-in'
+      }, {
+        label: 'Custom',
+        value: 'custom'
       }],
       onChange: onChangeBlockAnimation
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(MediaUploadCheck, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(MediaUpload, {
