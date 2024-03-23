@@ -26,6 +26,7 @@ export const withSidebarSelectProp = createHigherOrderComponent((BlockListBlock)
         const {
             matchNavBackground,
             blockAnimation,
+            animationDelay,
             fullHeight,
             fullWidth,
             hideMobile,
@@ -54,6 +55,9 @@ export const withSidebarSelectProp = createHigherOrderComponent((BlockListBlock)
             turnOnFold = 1;
             classes = classes + '  animation-on ' + blockAnimation;
             addClasses = 1;
+            if (animationDelay) {
+                classes = classes + '  animation-delay-' + animationDelay;
+            }
         }
         if (turnOnFold) {
             classes = classes + ' fold';

@@ -86,6 +86,7 @@ const saveSidebarSelectAttribute = (extraProps, blockType, attributes) => {
     const {
       matchNavBackground,
       blockAnimation,
+      animationDelay,
       fullHeight,
       fullWidth,
       hideMobile,
@@ -114,6 +115,9 @@ const saveSidebarSelectAttribute = (extraProps, blockType, attributes) => {
       turnOnFold = 1;
       classes = classes + '  animation-on ' + blockAnimation;
       addClasses = 1;
+      if (animationDelay) {
+        classes = classes + '  animation-delay-' + animationDelay;
+      }
     }
     if (turnOnFold) {
       classes = classes + ' fold';
@@ -227,6 +231,9 @@ const setSidebarSelectAttribute = (settings, name) => {
       blockAnimation: {
         type: 'string'
       },
+      animationDelay: {
+        type: 'string'
+      },
       topPadding: {
         type: 'string'
       },
@@ -304,6 +311,7 @@ const withSidebarSelect = createHigherOrderComponent(BlockEdit => {
     const {
       matchNavBackground,
       blockAnimation,
+      animationDelay,
       fullHeight,
       fullWidth,
       hideMobile,
@@ -320,6 +328,11 @@ const withSidebarSelect = createHigherOrderComponent(BlockEdit => {
     function onChangeBlockAnimation(newValue) {
       setAttributes({
         blockAnimation: newValue
+      });
+    }
+    function onChangeAnimationDelay(newValue) {
+      setAttributes({
+        animationDelay: newValue
       });
     }
     function onChangeTopPadding(newValue) {
@@ -401,6 +414,10 @@ const withSidebarSelect = createHigherOrderComponent(BlockEdit => {
         value: 'custom'
       }],
       onChange: onChangeBlockAnimation
+    }), blockAnimation !== '' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(TextControl, {
+      label: "Animation Delay (ex: 600ms, 0.6s)",
+      value: animationDelay,
+      onChange: onChangeAnimationDelay
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(MediaUploadCheck, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(MediaUpload, {
       onSelect: onChangeBackgroundImage,
       allowedTypes: ['image'],
@@ -601,6 +618,7 @@ const withSidebarSelectProp = createHigherOrderComponent(BlockListBlock => {
     const {
       matchNavBackground,
       blockAnimation,
+      animationDelay,
       fullHeight,
       fullWidth,
       hideMobile,
@@ -629,6 +647,9 @@ const withSidebarSelectProp = createHigherOrderComponent(BlockListBlock => {
       turnOnFold = 1;
       classes = classes + '  animation-on ' + blockAnimation;
       addClasses = 1;
+      if (animationDelay) {
+        classes = classes + '  animation-delay-' + animationDelay;
+      }
     }
     if (turnOnFold) {
       classes = classes + ' fold';

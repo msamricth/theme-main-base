@@ -15,10 +15,13 @@ export const withSidebarSelect = createHigherOrderComponent((BlockEdit) => {
         }
 
         const { attributes, setAttributes, isSelected } = props;
-        const { matchNavBackground, blockAnimation, fullHeight, fullWidth, hideMobile, hideTablet, hideDesktop, topPadding, bottomPadding, topMargin, bottomMargin, backgroundImage, seperatorTop, seperatorBottom } = attributes;
+        const { matchNavBackground, blockAnimation, animationDelay, fullHeight, fullWidth, hideMobile, hideTablet, hideDesktop, topPadding, bottomPadding, topMargin, bottomMargin, backgroundImage, seperatorTop, seperatorBottom } = attributes;
 
         function onChangeBlockAnimation(newValue) {
             setAttributes({ blockAnimation: newValue });
+        }
+        function onChangeAnimationDelay(newValue) {
+            setAttributes({ animationDelay: newValue });
         }
         function onChangeTopPadding(newValue) {
             setAttributes({ topPadding: newValue });
@@ -64,8 +67,7 @@ export const withSidebarSelect = createHigherOrderComponent((BlockEdit) => {
                                 checked={!!attributes.fullHeight}
                                 onChange={(newval) => setAttributes({ fullHeight: !attributes.fullHeight })}
                             />
-
-                            <SelectControl
+<SelectControl
                                 label="Animate this block"
                                 value={blockAnimation}
                                 options={[
@@ -80,6 +82,15 @@ export const withSidebarSelect = createHigherOrderComponent((BlockEdit) => {
                                 ]}
                                 onChange={onChangeBlockAnimation}
                             />
+
+                            {/* Add Animation Delay Text Field */}
+                            {blockAnimation !== '' && (
+                                <TextControl
+                                    label="Animation Delay (ex: 600ms, 0.6s)"
+                                    value={animationDelay}
+                                    onChange={onChangeAnimationDelay}
+                                />
+                            )}
                             <MediaUploadCheck>
                                 <MediaUpload
                                     onSelect={onChangeBackgroundImage}
