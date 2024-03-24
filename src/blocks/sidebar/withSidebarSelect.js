@@ -75,6 +75,7 @@ export const withSidebarSelect = createHigherOrderComponent((BlockEdit) => {
                                     { label: 'Fade In', value: 'fade-in' },
                                     { label: 'Slide Up', value: 'slide-up' },
                                     { label: 'Bounce In', value: 'bounce-in' },
+                                    { label: 'Bounce In Forward', value: 'bounce-in-fwd' },
                                     { label: 'Subtle Slide In', value: 'subtle-slide-in' },
                                     { label: 'TEXT: Focus In', value: 'text-focus-in' },
                                     { label: 'TEXT: Tracking In', value: 'tracking-in-expand' },

@@ -94,7 +94,9 @@ const enableSidebarSelectOnBlocks = [
     'acf/big-list',
     'acf/big-list-item',
     'airtable-wp/dynamic-form-builder',
-    'acf/header-block'
+    'acf/header-block',
+    'acf/lottie-motion',
+    'acf/image'
 
 ];
 
