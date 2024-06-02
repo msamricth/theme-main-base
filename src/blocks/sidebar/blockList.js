@@ -93,7 +93,7 @@ const enableSidebarSelectOnBlocks = [
     'acf/content-slider-gutenberg-slide',
     'acf/big-list',
     'acf/big-list-item',
-    'airtable-wp/dynamic-form-builder'
+    'acf/actionnetwork',
 
 ];
 
