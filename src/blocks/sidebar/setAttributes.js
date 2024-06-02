@@ -17,6 +17,7 @@ export const setSidebarSelectAttribute = (settings, name) => {
             seperatorTop: { type: 'boolean' },
             seperatorBottom: { type: 'boolean' },
             blockAnimation: { type: 'string' },
+            animationDelay: { type: 'string' },
             topPadding: { type: 'string' },
             bottomPadding: { type: 'string' },
             topMargin: { type: 'string' },

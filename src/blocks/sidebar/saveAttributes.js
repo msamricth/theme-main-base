@@ -13,6 +13,7 @@ export const saveSidebarSelectAttribute = (extraProps, blockType, attributes) =>
         const {
             matchNavBackground,
             blockAnimation,
+            animationDelay,
             fullHeight,
             fullWidth,
             hideMobile,
@@ -42,6 +43,9 @@ export const saveSidebarSelectAttribute = (extraProps, blockType, attributes) =>
             turnOnFold = 1;
             classes = classes + '  animation-on ' + blockAnimation;
             addClasses = 1;
+            if (animationDelay) {
+                classes = classes + '  animation-delay-' + animationDelay;
+            }
         }
         if (turnOnFold) {
             classes = classes + ' fold';
